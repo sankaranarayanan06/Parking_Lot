@@ -8,7 +8,7 @@ class ReceiptManager(
     private var location: ParkLocation,
     private var ticket: TicketManager
 ){
-    private var fee = 0
+    private var fee:Long = 0
     init {
         fee = this.location.calculateFee(calculateParkedDuration(ticket))
     }
