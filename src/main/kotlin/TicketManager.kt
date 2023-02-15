@@ -18,7 +18,7 @@ class TicketManager(
         return entryDate
     }
 
-    fun getVehicle(): Vehicle{
+    fun getVehicle(): Vehicle {
         return vehicle
     }
 }

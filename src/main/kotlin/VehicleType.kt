@@ -1,4 +1,4 @@
-enum class VehicleType(vehicleType:String){
+enum class VehicleType(vehicleType: String) {
     BIKE("bike"),
     SCOOTER("scooter"),
     CAR("car"),

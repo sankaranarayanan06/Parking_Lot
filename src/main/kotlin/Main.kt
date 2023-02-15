@@ -1,14 +1,9 @@
-import Location.MALL
-import VehicleType.BIKE
-
-fun main(args: Array<String>) {
+fun main() {
     //Get the location, vehicle and the vehicle number as input
 
     //Get the Object from factory Vehicle
-    val vehicle = FactoryVehicle().getVehicleInstance(BIKE)
 
     //Get the Object from factory Location
-    val location = FactoryLocation().getVehicleInstance(MALL)
 
     //Initialize vehicle class
 

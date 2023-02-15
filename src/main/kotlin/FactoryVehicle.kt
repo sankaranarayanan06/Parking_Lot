@@ -1,25 +1,30 @@
 import VehicleType.*
 
 class FactoryVehicle {
-    fun getVehicleInstance(type:VehicleType):Vehicle{
-         return when(type){
+    fun getVehicleInstance(type: VehicleType): Vehicle {
+        return when (type) {
             BIKE -> {
-                 Bike()
+                Bike()
             }
+
             SCOOTER -> {
-                 Scooter()
+                Scooter()
             }
+
             CAR -> {
-                 Car()
+                Car()
             }
+
             SUV -> {
-                 Suv()
+                Suv()
             }
+
             TRUCK -> {
-                 Truck()
+                Truck()
             }
+
             BUS -> {
-                 Bus()
+                Bus()
             }
         }
     }

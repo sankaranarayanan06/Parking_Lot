@@ -8,12 +8,12 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class MallTest{
+class MallTest {
 
     @Test
-    fun `it should return a free spot in mall`(){
+    fun `it should return a free spot in mall`() {
         //Arrange
-        val location = FactoryLocation().getVehicleInstance(MALL)
+        val location = FactoryLocation().getLocationInstance(MALL)
         val vehicle = FactoryVehicle().getVehicleInstance(BIKE)
         val expectedSpot = 0
 
@@ -21,18 +21,18 @@ class MallTest{
         val spot = location.getFreeSpot(vehicle)
 
         //Assert
-        assertEquals(expectedSpot,spot)
+        assertEquals(expectedSpot, spot)
     }
 
     @Test
-    fun `it should return spot is unavailable`(){
+    fun `it should return spot is unavailable`() {
         //Arrange
-        val location = FactoryLocation().getVehicleInstance(MALL)
+        val location = FactoryLocation().getLocationInstance(MALL)
         val vehicle = FactoryVehicle().getVehicleInstance(BIKE)
         var spot: Int
-        for (i in 0..99){
+        for (i in 0..99) {
             spot = location.getFreeSpot(vehicle)
-            location.parkVehicle(vehicle,spot)
+            location.parkVehicle(vehicle, spot)
         }
         val expectedSpot = -1
 
@@ -40,39 +40,39 @@ class MallTest{
         spot = location.getFreeSpot(vehicle)
 
         //Assert
-        assertEquals(expectedSpot,spot)
+        assertEquals(expectedSpot, spot)
     }
 
     @Test
-    fun `it should park a bike at the given spot in mall`(){
+    fun `it should park a bike at the given spot in mall`() {
         //Arrange
-        val location = FactoryLocation().getVehicleInstance(MALL)
+        val location = FactoryLocation().getLocationInstance(MALL)
         val vehicle = FactoryVehicle().getVehicleInstance(BIKE)
         val expectedSpot = 0
         val spot = location.getFreeSpot(vehicle)
 
         //Act
-        val response = location.parkVehicle(vehicle,spot)
+        val response = location.parkVehicle(vehicle, spot)
 
         //Assert
-        assertEquals(expectedSpot,spot)
+        assertEquals(expectedSpot, spot)
         assertTrue(response)
     }
 
     @Test
-    fun `it should unpark a bike at the given spot in mall`(){
+    fun `it should unpark a bike at the given spot in mall`() {
         //Arrange
-        val location = FactoryLocation().getVehicleInstance(MALL)
+        val location = FactoryLocation().getLocationInstance(MALL)
         val vehicle = FactoryVehicle().getVehicleInstance(BIKE)
         val expectedSpot = 0
         val spot = location.getFreeSpot(vehicle)
-        location.parkVehicle(vehicle,spot)
+        location.parkVehicle(vehicle, spot)
 
         //Act
-        val response = location.unParkVehicle(vehicle,spot)
+        val response = location.unParkVehicle(vehicle, spot)
 
         //Assert
-        assertEquals(expectedSpot,spot)
+        assertEquals(expectedSpot, spot)
         assertTrue(response)
     }
 }

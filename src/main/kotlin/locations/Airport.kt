@@ -4,8 +4,10 @@ import Bike
 import Car
 import Scooter
 import Suv
+import TOTAL_AIRPORT_FEE
 import Vehicle
 import java.util.*
+
 
 class Airport : ParkLocation() {
     private var numberOfTwoWheelerSpot: Int = 200
@@ -46,7 +48,7 @@ class Airport : ParkLocation() {
         return false
     }
 
-    override fun unParkVehicle(vehicle: Vehicle, parkedSpot: Int):Boolean{
+    override fun unParkVehicle(vehicle: Vehicle, parkedSpot: Int): Boolean {
         when (vehicle) {
             is Bike, is Scooter -> {
                 twoWheelerParkingSpot[parkedSpot] = false
@@ -61,22 +63,25 @@ class Airport : ParkLocation() {
         return false
     }
 
-    override fun calculateFee(vehicle:Vehicle,parkedDuration: Long):Long{
-        var fees:Long = 0
+    override fun calculateFee(vehicle: Vehicle, parkedDuration: Long): Long {
+        var fees: Long = 0
         when (vehicle) {
             is Bike, is Scooter -> {
                 when (parkedDuration) {
                     in 0 until 1 -> {
                         fees = 0
                     }
+
                     in 1 until 8 -> {
                         fees += 40
                     }
+
                     in 8 until 24 -> {
                         fees += 60
                     }
+
                     else -> {
-                        val numberOfDays = parkedDuration/24
+                        val numberOfDays = parkedDuration / 24
                         fees = numberOfDays * 80
                     }
                 }
@@ -87,16 +92,19 @@ class Airport : ParkLocation() {
                     in 0 until 12 -> {
                         fees = 60
                     }
+
                     in 12 until 24 -> {
                         fees += 80
                     }
+
                     else -> {
-                        val numberOfDays = parkedDuration/24
+                        val numberOfDays = parkedDuration / 24
                         fees = numberOfDays * 100
                     }
                 }
             }
         }
+        TOTAL_AIRPORT_FEE += fees
         return fees
     }
 }

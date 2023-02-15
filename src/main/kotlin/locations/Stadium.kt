@@ -50,7 +50,7 @@ class Stadium : ParkLocation() {
         return false
     }
 
-    override fun unParkVehicle(vehicle: Vehicle, parkedSpot: Int):Boolean{
+    override fun unParkVehicle(vehicle: Vehicle, parkedSpot: Int): Boolean {
         when (vehicle) {
             is Bike, is Scooter -> {
                 twoWheelerParkingSpot[parkedSpot] = false
@@ -66,17 +66,19 @@ class Stadium : ParkLocation() {
         return false
     }
 
-    override fun calculateFee(vehicle:Vehicle,parkedDuration: Long):Long{
-        var fees:Long = 0
+    override fun calculateFee(vehicle: Vehicle, parkedDuration: Long): Long {
+        var fees: Long = 0
         when (vehicle) {
             is Bike, is Scooter -> {
                 when (parkedDuration) {
                     in 0 until 4 -> {
                         fees += 30
                     }
+
                     in 4 until 12 -> {
                         fees += 90
                     }
+
                     else -> {
                         val duration = parkedDuration - 12
                         fees += duration * 100
@@ -89,11 +91,13 @@ class Stadium : ParkLocation() {
                     in 0 until 4 -> {
                         fees += 60
                     }
+
                     in 4 until 12 -> {
                         fees += 120
                     }
+
                     else -> {
-                        fees += 120 + ( (parkedDuration - 12) * 200 )
+                        fees += 120 + ((parkedDuration - 12) * 200)
                     }
                 }
             }

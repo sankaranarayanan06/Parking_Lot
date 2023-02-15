@@ -66,7 +66,7 @@ class Mall : ParkLocation() {
         return false
     }
 
-    override fun unParkVehicle(vehicle: Vehicle, parkedSpot: Int):Boolean{
+    override fun unParkVehicle(vehicle: Vehicle, parkedSpot: Int): Boolean {
         when (vehicle) {
             is Bike, is Scooter -> {
                 twoWheelerParkingSpot[parkedSpot] = false
@@ -86,8 +86,8 @@ class Mall : ParkLocation() {
         return false
     }
 
-    override fun calculateFee(vehicle:Vehicle,parkedDuration: Long):Long{
-        var fees:Long = 0
+    override fun calculateFee(vehicle: Vehicle, parkedDuration: Long): Long {
+        var fees: Long = 0
         when (vehicle) {
             is Bike, is Scooter -> {
                 fees = parkedDuration * twoWheelerParkingCharge
