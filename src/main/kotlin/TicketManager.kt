@@ -4,8 +4,9 @@ class TicketManager(
     private val entryDate: Date = Date(),
     private var ticketNumber: Int = TICKET_NUMBER++,
     private var parkedSpot: Int = 0,
-    private val location: Location
+    private val vehicle: Vehicle
 ) {
+
     fun generateTicket(): String {
         return "Parking Ticket:\n\t" +
                 "Ticket Number:\t$ticketNumber\n\t" +
@@ -17,8 +18,7 @@ class TicketManager(
         return entryDate
     }
 
-    fun getLocation(): Location {
-        return location
+    fun getVehicle(): Vehicle{
+        return vehicle
     }
-
 }

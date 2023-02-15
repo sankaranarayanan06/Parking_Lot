@@ -40,46 +40,60 @@ class Mall : ParkLocation() {
     }
 
 
-    override fun parkVehicle(vehicle: Vehicle, freeSpot: Int) {
+    override fun parkVehicle(vehicle: Vehicle, freeSpot: Int): Boolean {
         when (vehicle) {
             is Bike, is Scooter -> {
                 twoWheelerParkingSpot[freeSpot] = true
+                return true
             }
 
             is Car, is Suv -> {
                 lightVehicleParkingSpot[freeSpot] = true
+                return true
             }
 
             is Truck, is Bus -> {
                 heavyVehicleParkingSpot[freeSpot] = true
+                return true
             }
         }
+        return false
     }
 
-    override fun unParkVehicle(vehicle: Vehicle, parkedSpot: Int){
+    override fun unParkVehicle(vehicle: Vehicle, parkedSpot: Int):Boolean{
         when (vehicle) {
             is Bike, is Scooter -> {
                 twoWheelerParkingSpot[parkedSpot] = false
+                return true
             }
 
             is Car, is Suv -> {
                 lightVehicleParkingSpot[parkedSpot] = false
+                return true
             }
 
             is Truck, is Bus -> {
                 heavyVehicleParkingSpot[parkedSpot] = false
+                return true
             }
         }
+        return false
     }
 
     override fun calculateFee(vehicle:Vehicle,parkedDuration: Long):Long{
         var fees:Long = 0
-        if (vehicle is Bike || vehicle is Scooter){
-            fees = parkedDuration * twoWheelerParkingCharge
-        }else if (vehicle is Car || vehicle is Suv){
-            fees = parkedDuration * lightVehicleParkingCharge
-        }else if (vehicle is Truck || vehicle is Bus){
-            fees = parkedDuration * heavyVehicleParkingCharge
+        when (vehicle) {
+            is Bike, is Scooter -> {
+                fees = parkedDuration * twoWheelerParkingCharge
+            }
+
+            is Car, is Suv -> {
+                fees = parkedDuration * lightVehicleParkingCharge
+            }
+
+            is Truck, is Bus -> {
+                fees = parkedDuration * heavyVehicleParkingCharge
+            }
         }
         TOTAL_MALL_FEE += fees
         return fees
