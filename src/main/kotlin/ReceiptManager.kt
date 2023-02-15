@@ -1,5 +1,6 @@
 import locations.ParkLocation
 import java.util.*
+import kotlin.math.ceil
 
 class ReceiptManager(
     private var exitDate:Date = Date(),
@@ -12,14 +13,15 @@ class ReceiptManager(
         fee = this.location.calculateFee(ticket.getVehicle(),calculateParkedDuration(ticket))
     }
 
-    fun generateReceipt(ticket: TicketManager): String {
+    fun generateReceipt(): String {
         return "Parking Receipt:\n\t" +
                 "Receipt Number:\t$receiptNumber\n\t" +
-                "Entry Date:\t${ticket.getEntryDate()}\n\t"
+                "Entry Date:\t${ticket.getEntryDate()}\n\t" +
                 "Fees:\t$fee\n\t"
     }
 
-    fun calculateParkedDuration(ticket: TicketManager): Long{
-        return ticket.getEntryDate().toString().toLong() - exitDate.toString().toLong()
+    fun calculateParkedDuration(ticket: TicketManager): Long {
+        return ceil((exitDate.time - ticket.getEntryDate().time).toDouble() / 3600000 ).toLong()
+
     }
 }
