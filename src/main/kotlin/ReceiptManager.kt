@@ -17,6 +17,7 @@ class ReceiptManager(
         return "Parking Receipt:\n\t" +
                 "Receipt Number:\t$receiptNumber\n\t" +
                 "Entry Date:\t${ticket.getEntryDate()}\n\t" +
+                "Exit Date:\t${exitDate}\n\t" +
                 "Fees:\t$fee\n\t"
     }
 
