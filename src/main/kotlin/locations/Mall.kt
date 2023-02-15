@@ -29,12 +29,18 @@ class Mall : ParkLocation() {
 
     override fun getFreeSpot(vehicle: Vehicle): Int {
         var freeSpot = -1
-        if (vehicle is Bike || vehicle is Scooter) {
-            freeSpot = checkForFreeSpotAvailability(twoWheelerParkingSpot, numberOfTwoWheelerSpot)
-        } else if (vehicle is Car || vehicle is Suv) {
-            freeSpot = checkForFreeSpotAvailability(lightVehicleParkingSpot, numberOfLightVehicleSpot)
-        } else if (vehicle is Truck || vehicle is Bus) {
-            freeSpot = checkForFreeSpotAvailability(heavyVehicleParkingSpot, numberOfHeavyVehicleSpot)
+        when (vehicle) {
+            is Bike, is Scooter -> {
+                freeSpot = checkForFreeSpotAvailability(twoWheelerParkingSpot, numberOfTwoWheelerSpot)
+            }
+
+            is Car, is Suv -> {
+                freeSpot = checkForFreeSpotAvailability(lightVehicleParkingSpot, numberOfLightVehicleSpot)
+            }
+
+            is Truck, is Bus -> {
+                freeSpot = checkForFreeSpotAvailability(heavyVehicleParkingSpot, numberOfHeavyVehicleSpot)
+            }
         }
         return freeSpot
     }
