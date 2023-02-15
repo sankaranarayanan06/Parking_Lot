@@ -29,7 +29,7 @@ class MallTest{
         //Arrange
         val location = FactoryLocation().getVehicleInstance(MALL)
         val vehicle = FactoryVehicle().getVehicleInstance(BIKE)
-        var spot = 0
+        var spot: Int
         for (i in 0..99){
             spot = location.getFreeSpot(vehicle)
             location.parkVehicle(vehicle,spot)

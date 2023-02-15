@@ -22,12 +22,13 @@ class ReceiptManagerTest{
                 "Parking Receipt:\n\t" +
                 "Receipt Number:\t0\n\t" +
                 "Entry Date:\t${ticket.getEntryDate()}\n\t" +
+                "Exit Date:\t${Date()}\n\t" +
                 "Fees:\t10\n\t"
 
         //Act
         val receipt = ReceiptManager(location = location, ticket = ticket)
         val response = receipt.generateReceipt()
-
+        
         //Assert
         assertEquals(expectedResponse,response)
     }
